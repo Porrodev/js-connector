@@ -1,17 +1,17 @@
-# porro-report
+# @porro/js-connector
 
-Sends a signed, read-only report about a JavaScript site to [Porro](https://porro.dev) on every build: the framework and Node versions, and the packages in your lock file, so Porro can raise security advisories, updates waiting and versions past support.
+Porro's connector for JavaScript sites. It sends a signed, read-only report to [Porro](https://porro.dev) on every build: the framework and Node versions, and the packages in your lock file, so Porro can raise security advisories, updates waiting and versions past support.
 
 It runs at build time, so it works wherever you build: Forge, Laravel Cloud, Cloudflare Pages, Vercel, Netlify or your own CI. Nothing connects into your site, and nothing runs in production.
 
 ## Install
 
 ```bash
-npm install --save-dev porro-report
-npx porro-report connect porro_your_site_key
+npm install --save-dev @porro/js-connector
+npx @porro/js-connector connect porro_your_site_key
 ```
 
-`connect` sends the first report and adds `&& porro-report` to your `build` script. Commit that change.
+`connect` sends the first report and adds `&& porro-connector` to your `build` script. Commit that change.
 
 Then add the key to your host's **production** environment variables, not the repo:
 
@@ -29,7 +29,7 @@ Every production build reports to Porro. A build without `PORRO_KEY` (your machi
 - A SHA-256 of the lock file
 - Whether source maps are published with the site
 
-Never: source code, the lock file itself, environment variable values or secrets. Run `npx porro-report --dry-run` to see exactly what would be sent.
+Never: source code, the lock file itself, environment variable values or secrets. Run `npx @porro/js-connector --dry-run` to see exactly what would be sent.
 
 Advisories are matched on Porro's side against the latest lock file it has, so a new advisory raises an alert without waiting for your next build.
 

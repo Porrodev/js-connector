@@ -4,14 +4,14 @@ import { report, VERSION } from './index.js';
 import { buildReport } from './report.js';
 import { DEFAULT_URL } from './send.js';
 
-const HELP = `porro-report ${VERSION}
+const HELP = `@porro/js-connector ${VERSION}
 
 Sends a signed, read-only report about this project's packages and runtime
 to Porro. Nothing connects into your site.
 
-  porro-report                     Report this build (reads PORRO_KEY)
-  porro-report connect <key>       Send the first report and add the build hook
-  porro-report --dry-run           Print the report instead of sending it
+  porro-connector                  Report this build (reads PORRO_KEY)
+  porro-connector connect <key>    Send the first report and add the build hook
+  porro-connector --dry-run        Print the report instead of sending it
 
 Options
   --url=<url>     Porro's address (default ${DEFAULT_URL}, or PORRO_URL)
@@ -47,16 +47,16 @@ export async function run(argv, { env, cwd, fetch, log = (s) => process.stdout.w
 
         // A build without a key (local, or a preview deploy) is fine: skip.
         if (!env.PORRO_KEY) {
-            log('porro-report: no PORRO_KEY set, skipping. Set it in your host’s production environment.');
+            log('porro-connector: no PORRO_KEY set, skipping. Set it in your host’s production environment.');
             return 0;
         }
 
         const { report: sent } = await report({ dir, token: env.PORRO_KEY, url, trigger: 'deploy', fetch });
-        log(`porro-report: sent ${sent.lock.packages?.length ?? 0} packages to Porro.`);
+        log(`porro-connector: sent ${sent.lock.packages?.length ?? 0} packages to Porro.`);
 
         return 0;
     } catch (error) {
-        log(`porro-report: ${error.message}`);
+        log(`porro-connector: ${error.message}`);
 
         // Never fail someone's deploy over a report. Only connect, which a
         // person runs by hand, exits with an error.
@@ -66,7 +66,7 @@ export async function run(argv, { env, cwd, fetch, log = (s) => process.stdout.w
 
 async function connect(token, { dir, url, fetch, log, defaultUrl }) {
     if (!token) {
-        log('Usage: porro-report connect <site key>   (the porro_… key from Porro)');
+        log('Usage: npx @porro/js-connector connect <site key>   (the porro_… key from Porro)');
         return 1;
     }
 
@@ -74,9 +74,9 @@ async function connect(token, { dir, url, fetch, log, defaultUrl }) {
     log(`✓ First report sent: ${sent.lock.packages?.length ?? 0} packages${sent.layers[0] ? `, ${sent.layers[0].name} ${sent.layers[0].version}` : ''}.`);
 
     if (addBuildHook(dir)) {
-        log('✓ Added "&& porro-report" to your build script in package.json. Commit it.');
+        log('✓ Added "&& porro-connector" to your build script in package.json. Commit it.');
     } else {
-        log('✓ package.json already runs porro-report after each build.');
+        log('✓ package.json already runs porro-connector after each build.');
     }
 
     log('');
@@ -92,7 +92,7 @@ async function connect(token, { dir, url, fetch, log, defaultUrl }) {
 }
 
 /**
- * Run porro-report after every build.
+ * Run porro-connector after every build.
  *
  * @param {string} dir
  * @returns {boolean} whether package.json changed
@@ -103,14 +103,14 @@ export function addBuildHook(dir) {
     const manifest = JSON.parse(raw);
     const scripts = (manifest.scripts ??= {});
 
-    if (Object.values(scripts).some((s) => String(s).includes('porro-report'))) return false;
+    if (Object.values(scripts).some((s) => String(s).includes('porro-connector'))) return false;
 
     // Appended to the build script itself: pnpm and Yarn 2+ skip "post"
     // hooks by default, but every package manager runs this.
     if (scripts.build) {
-        scripts.build = `${scripts.build} && porro-report`;
+        scripts.build = `${scripts.build} && porro-connector`;
     } else {
-        scripts.postbuild = 'porro-report';
+        scripts.postbuild = 'porro-connector';
     }
 
     const indent = /^(\s+)"/m.exec(raw)?.[1] ?? '  ';

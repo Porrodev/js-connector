@@ -1,7 +1,7 @@
 {
-  "name": "porro-report",
+  "name": "@porro/js-connector",
   "version": "0.1.0",
-  "description": "Sends a signed, read-only report about a JavaScript site's packages and runtime to Porro on every build.",
+  "description": "Porro's connector for JavaScript sites: a signed, read-only report of packages and runtime on every build.",
   "type": "module",
   "license": "MIT",
   "homepage": "https://porro.dev/connectors",
@@ -10,18 +10,34 @@
     "url": "git+https://github.com/Porrodev/js-connector.git"
   },
   "bugs": "https://github.com/Porrodev/js-connector/issues",
-  "keywords": ["porro", "monitoring", "security", "advisories", "nuxt", "next", "vite"],
+  "keywords": [
+    "porro",
+    "monitoring",
+    "security",
+    "advisories",
+    "nuxt",
+    "next",
+    "vite"
+  ],
   "engines": {
     "node": ">=18.17"
   },
   "bin": {
-    "porro-report": "bin/porro-report.js"
+    "porro-connector": "bin/porro-connector.js"
   },
   "exports": {
     ".": "./src/index.js"
   },
-  "files": ["bin", "src", "README.md", "LICENSE"],
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "test": "node --test"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

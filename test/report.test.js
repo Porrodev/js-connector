@@ -10,7 +10,7 @@ test('reports Node, the framework, the lock file and published source maps', () 
     assert.equal(report.schema, 1);
     assert.equal(report.mode, 'deploy');
     assert.equal(report.trigger, 'deploy');
-    assert.deepEqual(report.connector, { name: 'porro-report', version: '0.1.0' });
+    assert.deepEqual(report.connector, { name: '@porro/js-connector', version: '0.1.0' });
     assert.equal(report.runtime.name, 'node');
     assert.equal(report.runtime.version, process.versions.node);
     assert.deepEqual(report.platform, { name: 'node', version: '3.13.2', environment: 'production' });

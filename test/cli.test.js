@@ -10,7 +10,7 @@ const fixture = new URL('fixtures/nuxt-app/', import.meta.url).pathname;
 const token = `porro_01jabcdefghjkmnpqrstvwxyz0_${randomBytes(32).toString('base64url')}`;
 
 function project() {
-    const dir = mkdtempSync(join(tmpdir(), 'porro-report-'));
+    const dir = mkdtempSync(join(tmpdir(), 'porro-connector-'));
     cpSync(fixture, dir, { recursive: true });
     return dir;
 }
@@ -62,7 +62,7 @@ test('connect sends the first report, hooks the build and shows the key to set',
 
     assert.equal(code, 0);
     assert.equal(porro.calls[0].body.trigger, 'connect');
-    assert.equal(manifest.scripts.build, 'nuxt build && porro-report');
+    assert.equal(manifest.scripts.build, 'nuxt build && porro-connector');
     assert.ok(logs.includes(`  PORRO_KEY=${token}`));
     assert.equal(addBuildHook(dir), false, 'only added once');
     rmSync(dir, { recursive: true });

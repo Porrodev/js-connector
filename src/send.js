@@ -23,7 +23,7 @@ export async function send(key, report, { url = DEFAULT_URL, version, fetch: fet
             ...signedHeaders(key, body),
             'Content-Type': 'application/json',
             Accept: 'application/json',
-            'User-Agent': `porro-report/${version}`,
+            'User-Agent': `porro-js-connector/${version}`,
         };
 
         let response;

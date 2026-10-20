@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { readLock } from './lockfile.js';
 
-export const CONNECTOR = 'porro-report';
+export const CONNECTOR = '@porro/js-connector';
 
 // The framework a site is built with, most specific first. The first one
 // installed becomes the site's platform in Porro.
@@ -29,7 +29,7 @@ export function readManifest(dir) {
     const file = join(dir, 'package.json');
 
     if (!existsSync(file)) {
-        throw new Error(`No package.json in ${dir}. Run porro-report from the project folder.`);
+        throw new Error(`No package.json in ${dir}. Run it from the project folder.`);
     }
 
     return JSON.parse(readFileSync(file, 'utf8'));
