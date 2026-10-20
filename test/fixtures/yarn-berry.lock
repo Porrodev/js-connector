@@ -1,0 +1,15 @@
+__metadata:
+  version: 8
+  cacheKey: 10c0
+
+"@nuxt/kit@npm:^3.13.0":
+  version: 3.13.2
+  resolution: "@nuxt/kit@npm:3.13.2"
+
+"nuxt@npm:^3.13.0":
+  version: 3.13.2
+  resolution: "nuxt@npm:3.13.2"
+
+"ricky-site@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "ricky-site@workspace:."

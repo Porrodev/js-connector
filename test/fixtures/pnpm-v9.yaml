@@ -1,0 +1,26 @@
+lockfileVersion: '9.0'
+
+importers:
+
+  .:
+    dependencies:
+      nuxt:
+        specifier: ^3.13.0
+        version: 3.13.2(vue@3.5.12)
+
+packages:
+
+  '@nuxt/kit@3.13.2':
+    resolution: {integrity: sha512-abc}
+
+  nuxt@3.13.2:
+    resolution: {integrity: sha512-def}
+
+  vue@3.5.12:
+    resolution: {integrity: sha512-ghi}
+
+snapshots:
+
+  nuxt@3.13.2(vue@3.5.12):
+    dependencies:
+      vue: 3.5.12
