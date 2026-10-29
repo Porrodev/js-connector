@@ -4,7 +4,7 @@
   "description": "Porro's connector for JavaScript sites: a signed, read-only report of packages and runtime on every build.",
   "type": "module",
   "license": "MIT",
-  "homepage": "https://porro.dev/connectors",
+  "homepage": "https://porro.dev/connectors?utm_source=js-connector&utm_medium=npm&utm_campaign=connectors",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Porrodev/js-connector.git"
