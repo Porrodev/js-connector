@@ -1,5 +1,7 @@
 # @porro/js-connector
 
+![Build reports for JavaScript, read-only to Porro: advisories, versions and builds, sent by npx porro-connector](https://raw.githubusercontent.com/Porrodev/js-connector/main/docs/images/header.png)
+
 Porro's connector for JavaScript sites. It sends a signed, read-only report to [Porro](https://porro.dev/?utm_source=js-connector&utm_medium=readme&utm_campaign=connectors) on every build: the framework and Node versions, and the packages in your lock file, so Porro can raise security advisories, updates waiting and versions past support.
 
 It runs at build time, so it works wherever you build: Forge, Laravel Cloud, Cloudflare Pages, Vercel, Netlify or your own CI. Nothing connects into your site, and nothing runs in production.
