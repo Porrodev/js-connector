@@ -1,6 +1,6 @@
 {
   "name": "@porro/js-connector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Porro's connector for JavaScript sites: a signed, read-only report of packages and runtime on every build.",
   "type": "module",
   "license": "MIT",
